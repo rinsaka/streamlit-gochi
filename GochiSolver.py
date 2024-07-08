@@ -4,8 +4,8 @@ from ortoolpy import knapsack
 
 class GochiSolver:
     def __init__(self):
-        self.W = []
-        self.C = 0
+        self.W = [] # 価格
+        self.C = 0  # 予算
         self.ID = []
         self.Menu = []
         self.Size = []
@@ -22,8 +22,6 @@ class GochiSolver:
         self.ID = weight_df['no'].tolist()
         self.Menu = weight_df['menu'].tolist()
         self.Size = weight_df['size'].tolist()
-        # print(weight_df)
-        # print(capacity)
 
     def show(self):
         print("W:", self.W)
@@ -53,13 +51,21 @@ class GochiSolver:
 
 if __name__ == "__main__":
     weight_df = pd.read_csv("gochi-menu.csv")
-    capacity = 14800
+    capacity = 2980
+    # capacity = 31560
+    # capacity = 31453
 
     gochi = GochiSolver()
     gochi.set_data(weight_df, capacity)
-    gochi.show()
+    # gochi.show()  # 確認のために読み込んだデータを表示する
     gochi.solve()
-    print(gochi.total)
-    print(gochi.order_ids)
-    # print(gochi.menu_df)
+
+    if gochi.C == gochi.total:
+        print("解が見つかりました")
+    else:
+        print("解は見つかりませんでした")
+        print(f"- 差額: {gochi.total - gochi.C}")
+    print(f"- 予算額: {gochi.C}")
+    print(f"- 注文合計額: {gochi.total}")
+    print("")
     print(gochi.order_df)
