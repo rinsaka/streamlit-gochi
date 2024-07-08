@@ -73,7 +73,10 @@ if __name__ == "__main__":
         capacity = 2980
         # capacity = 31560
         # capacity = 31453
-    weight_df = pd.read_csv("gochi-menu.csv")
+
+    url = "https://github.com/rinsaka/sample-data-sets/blob/master/gochi-menu.csv?raw=true"
+    # url = "gochi-menu.csv"  # カレントディレクトリから読み込む場合
+    weight_df = pd.read_csv(url)
 
     gochi = GochiSolver()
     gochi.set_data(weight_df, capacity)
