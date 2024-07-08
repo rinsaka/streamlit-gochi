@@ -65,14 +65,12 @@ def get_args():
     args = parser.parse_args()
     return(args)
 
-if __name__ == "__main__":
+def main():
     args = get_args()
     if args.capacity:
         capacity = args.capacity
     else:
         capacity = 2980
-        # capacity = 31560
-        # capacity = 31453
 
     url = "https://github.com/rinsaka/sample-data-sets/blob/master/gochi-menu.csv?raw=true"
     # url = "gochi-menu.csv"  # カレントディレクトリから読み込む場合
@@ -92,3 +90,6 @@ if __name__ == "__main__":
     print(f"- 注文合計: {gochi.total}")
     print("")
     print(gochi.order_df)
+
+if __name__ == "__main__":
+    main()
