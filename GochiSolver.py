@@ -4,6 +4,9 @@ from ortoolpy import knapsack
 import argparse
 
 class GochiSolver:
+    """
+    ゴチのソルバー
+    """
     def __init__(self):
         self.W = [] # 価格
         self.C = 0  # 予算
@@ -50,16 +53,15 @@ class GochiSolver:
         # 注文メニューだけのデータフレーム
         self.order_df = self.menu_df[self.menu_df.order > 0]
 
-"""
-コマンドライン引数を取り出す処理を行う関数
-"""
+
 def get_args():
+    """
+    コマンドライン引数を取り出す処理を行う関数
+    """
     # オブジェクトを生成する
     parser = argparse.ArgumentParser()
-
     # 予算はオプショナル引数
     parser.add_argument("-c", "--capacity", type=int, help="Capacity")
-
     args = parser.parse_args()
     return(args)
 
