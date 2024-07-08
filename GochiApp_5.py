@@ -13,7 +13,7 @@ weight_file = st.sidebar.file_uploader("メニューデータ", ["csv"])
 tab1, tab2, tab3 = st.tabs(
     [
         "メニュー情報",
-        "予算の設定",
+        "設定金額",
         "注文の作成"
     ]
 )
@@ -27,7 +27,7 @@ with tab1:
         st.table(weight_file)
 
 with tab2:
-    st.markdown('### 予算の設定')
+    st.markdown('### 設定金額')
     st.markdown('- 下限は最も安い料理だけを注文する場合')
     st.markdown('- 上限はすべての料理を注文する場合')
     if weight_file is None:
@@ -36,7 +36,7 @@ with tab2:
         min_weight = weight_file['price'].min() # スライダの下限
         sum_weight = weight_file['price'].sum() # スライダの上限
         value = int((sum_weight - min_weight)/2 + min_weight) # スライダの初期値は中央
-        capacity = st.slider('スライドさせて予算を設定してください', min_value=min_weight, max_value=sum_weight, value=value)
+        capacity = st.slider('スライドさせて設定金額を指定してください', min_value=min_weight, max_value=sum_weight, value=value)
 
 with tab3:
     if weight_file is None:
@@ -54,8 +54,8 @@ with tab3:
             else:
                 st.markdown("#### 解は見つかりませんでした")
                 st.markdown(f"- 差額: {gochi.total - gochi.C}")
-            st.markdown(f"- 予算額: {gochi.C}")
-            st.markdown(f"- 注文合計額: {gochi.total}")
+            st.markdown(f"- 設定金額: {gochi.C}")
+            st.markdown(f"- 注文合計: {gochi.total}")
             # st.markdown(f"- 注文メニュー: {gochi.order_ids}")
 
             st.table(gochi.order_df)
