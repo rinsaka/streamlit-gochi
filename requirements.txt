@@ -2,4 +2,3 @@ pandas
 numpy
 ortoolpy
 streamlit
-japanize-matplotlib
