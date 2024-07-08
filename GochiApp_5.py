@@ -33,9 +33,10 @@ with tab2:
     if weight_file is None:
         st.markdown("- メニューデータをアップロードしてください")
     else:
-        min_weight = weight_file['price'].min()
-        sum_weight = weight_file['price'].sum()
-        capacity = st.slider('スライドさせて予算を設定してください', min_value=min_weight, max_value=sum_weight)  # スライダー
+        min_weight = weight_file['price'].min() # スライダの下限
+        sum_weight = weight_file['price'].sum() # スライダの上限
+        value = int((sum_weight - min_weight)/2 + min_weight) # スライダの初期値は中央
+        capacity = st.slider('スライドさせて予算を設定してください', min_value=min_weight, max_value=sum_weight, value=value)
 
 with tab3:
     if weight_file is None:

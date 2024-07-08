@@ -10,8 +10,6 @@ class GochiSolver:
         self.Menu = []
         self.Size = []
 
-        self.x = []
-
         self.total = 0
         self.order_ids = []
 
@@ -35,9 +33,12 @@ class GochiSolver:
         print("Size: ", self.Size)
 
     def solve(self):
+        # 問題を解く
         self.total, self.order_ids = knapsack(self.W, self.W, self.C)
+        # 注文するかしないか
         orders = np.zeros(len(self.ID), dtype=np.int64) # ゼロで初期化
         orders[self.order_ids] = 1 # 注文するメニューを設定
+        # 全メニューのデータフレームに注文データ(0-1変数)も追加する
         self.menu_df = pd.DataFrame(
             {
                 'no': self.ID,
@@ -47,6 +48,7 @@ class GochiSolver:
                 'order' : orders
             }
         )
+        # 注文メニューだけのデータフレーム
         self.order_df = self.menu_df[self.menu_df.order > 0]
 
 if __name__ == "__main__":
