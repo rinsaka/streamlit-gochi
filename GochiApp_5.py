@@ -48,6 +48,13 @@ with tab3:
             gochi.set_data(weight_file, capacity)
             gochi.solve()
 
-            st.markdown("### 作成結果")
+            if gochi.C == gochi.total :
+                st.markdown("#### 解が見つかりました")
+            else:
+                st.markdown("#### 解は見つかりませんでした")
+                st.markdown(f"- 差額: {gochi.total - gochi.C}")
+            st.markdown(f"- 予算額: {gochi.C}")
             st.markdown(f"- 注文合計額: {gochi.total}")
-            st.markdown(f"- 注文メニュー: {gochi.order_ids}")
+            # st.markdown(f"- 注文メニュー: {gochi.order_ids}")
+
+            st.table(gochi.order_df)
