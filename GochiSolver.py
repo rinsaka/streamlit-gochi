@@ -9,7 +9,7 @@ class GochiSolver:
     """
     def __init__(self):
         self.W = [] # 価格
-        self.C = 0  # 予算
+        self.C = 0  # 設定金額
         self.ID = []
         self.Menu = []
         self.Size = []
@@ -60,7 +60,7 @@ def get_args():
     """
     # オブジェクトを生成する
     parser = argparse.ArgumentParser()
-    # 予算はオプショナル引数
+    # 設定金額はオプショナル引数
     parser.add_argument("-c", "--capacity", type=int, help="Capacity")
     args = parser.parse_args()
     return(args)
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     else:
         print("解は見つかりませんでした")
         print(f"- 差額: {gochi.total - gochi.C}")
-    print(f"- 予算額: {gochi.C}")
-    print(f"- 注文合計額: {gochi.total}")
+    print(f"- 設定金額: {gochi.C}")
+    print(f"- 注文合計: {gochi.total}")
     print("")
     print(gochi.order_df)
